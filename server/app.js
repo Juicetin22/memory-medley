@@ -7,8 +7,11 @@ const cors = require('cors'); // cors require
 // db connection
 const db = require("./configs/db.config");
 
+// route routers
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const simpleScoresRouter = require('./routes/simpleScores');
+const numberScoresRouter = require('./routes/numberScores');
 
 const app = express();
 
@@ -19,7 +22,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter(db));
+app.use('/simple_scores', simpleScoresRouter(db));
+app.use('/number_scores', numberScoresRouter(db));
 
 module.exports = app;
