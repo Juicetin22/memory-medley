@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
 import Homepage from './components/Homepage';
 
