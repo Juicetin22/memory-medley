@@ -10,7 +10,7 @@ const db = require("./configs/db.config");
 // route routers
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const simpleScoresRouter = require('./routes/simpleScores');
+const classicScoresRouter = require('./routes/simpleScores');
 const numberScoresRouter = require('./routes/numberScores');
 
 const app = express();
@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter(db));
-app.use('/simple_scores', simpleScoresRouter(db));
+app.use('/classic_scores', classicScoresRouter(db));
 app.use('/number_scores', numberScoresRouter(db));
 
 module.exports = app;
