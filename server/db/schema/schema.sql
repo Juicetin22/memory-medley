@@ -9,7 +9,7 @@ CREATE TABLE users (
   password VARCHAR(255)
 );
 
-CREATE TABLE simple_scores (
+CREATE TABLE classic_scores (
   id SERIAL PRIMARY KEY NOT NULL,
   score INTEGER NOT NULL DEFAULT 0,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
