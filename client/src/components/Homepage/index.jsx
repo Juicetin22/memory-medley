@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./index.scss";
-import { Button, Modal, ModalBody } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Homepage = () => {
   
@@ -17,10 +18,15 @@ const Homepage = () => {
       <p>Tap on either button below to start playing!</p>
       
       <div className="game-buttons">
-        <Button className="classic-button">Classic Tap Game</Button>
-        <Button variant="danger" className="number-button">Number Tap Game</Button>
+        <Link to={"/classic"}>
+          <Button className="classic-button">Classic Tap Game</Button>
+        </Link>
+        <Link to={"/number"}>
+          <Button variant="danger" className="number-button">Number Tap Game</Button>
+        </Link>
       </div>
       <Button variant="outline-secondary" className="how-to-play" onClick={handleShow}>How to play</Button>
+      
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton />
         <Modal.Body className="how-to-play-modal">
