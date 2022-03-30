@@ -10,7 +10,7 @@ const db = require("./configs/db.config");
 // route routers
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const classicScoresRouter = require('./routes/simpleScores');
+const classicScoresRouter = require('./routes/classicScores');
 const numberScoresRouter = require('./routes/numberScores');
 
 const app = express();
