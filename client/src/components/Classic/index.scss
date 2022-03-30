@@ -5,3 +5,14 @@
   position: absolute;
   transform: translate(-50%, -50%);
 }
+
+.time-score {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 91vh;
+}
+
+.classic-game-header {
+  margin-top: 2px;
+}
