@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import GameBoard from "../GameBoard";
 import "./index.scss";
 
 const Classic = () => {
   const [position, setPosition] = useState({left: "50%", top: "50%", "background-color": "black"});
   const [score, setScore] = useState(0);
+  const [time, setTime] = useState(100);
 
   const random = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -20,12 +21,29 @@ const Classic = () => {
 
     setScore(prev => prev + 1);
   }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (time > 0) {
+        setTime(prev => prev - 1)
+      }
+    }, 1000);
+
+    // clean up setInterval - want to do this or else after rerender another setInterval will occur at same time, etc.
+    return () => {
+      clearInterval(interval)
+    }
+  }, [time]);
   
   return (
     <div>
+      <h3 className="classic-game-header">Classic Tap Game</h3>
+      <div className="time-score">
+        <p>Time Remaining: {time}</p>
+        <p><strong>Score: {score}</strong></p>
+      </div>
       <GameBoard />
       <div className="classic-piece" style={position} onClick={reposition}></div>
-      <p>Score: {score}</p>
     </div>
   )
 }
