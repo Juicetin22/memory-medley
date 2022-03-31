@@ -8,8 +8,11 @@ import axios from "axios";
 const Number = () => {
   const [number, setNumber] = useState(0);
   const [position, setPosition] = useState({left: "50%", top: "50%", border: `2px gray solid`});
-  const [score, setScore] = useState(0);
-  const [time, setTime] = useState(10);
+  const [fakeNumberOne, setFakeNumberOne] = useState(0);
+  const [fakePositionOne, setFakePositionOne] = useState({left: "50%", top: "50%", border: `2px gray solid`});
+  const [fakeNumberTwo, setFakeNumberTwo] = useState(0);
+  const [fakePositionTwo, setFakePositionTwo] = useState({left: "50%", top: "50%", border: `2px gray solid`});
+  const [time, setTime] = useState(30);
   const [start, setStart] = useState(false);
   const [end, setEnd] = useState(false);
   const [highScore, setHighScore] = useState(0);
@@ -28,18 +31,59 @@ const Number = () => {
       top: `${random(20, 80)}%`, 
       border: `2px rgb(${random(0, 250)}, ${random(0, 250)}, ${random(0, 250)}) solid`
     }));
-
-    setScore(prev => prev + 1);
     
     if (!start) {
       setStart(true);
+    }
+
+    // increase difficulty after reaching a point
+    if (number >= 14) {
+      // setting state is async so this if statement will occur before the new number is set, which is why we need to see the fake to the 'current' number or number + 2 (which is actually one less or one more respectively)
+      setFakeNumberOne(number);
+      setFakePositionOne({ 
+        left: `${random(15, 85)}%`, 
+        top: `${random(20, 80)}%`, 
+        border: `2px rgb(${random(0, 250)}, ${random(0, 250)}, ${random(0, 250)}) solid`
+      })
+      setFakeNumberTwo(number + 2);
+      setFakePositionTwo({ 
+        left: `${random(15, 85)}%`, 
+        top: `${random(20, 80)}%`, 
+        border: `2px rgb(${random(0, 250)}, ${random(0, 250)}, ${random(0, 250)}) solid`
+      })
+
+    } else if (number >= 9) {
+      // set fake numbers that aren't equal to the current number
+      const fakeOne = random(1, 99);
+      const fakeTwo = random(1, 99);
+      setFakeNumberOne(fakeOne === number ? fakeOne - 1 : fakeOne);
+      setFakePositionOne({ 
+        left: `${random(15, 85)}%`, 
+        top: `${random(20, 80)}%`, 
+        border: `2px rgb(${random(0, 250)}, ${random(0, 250)}, ${random(0, 250)}) solid`
+      })
+      setFakeNumberTwo(fakeTwo === number ? fakeTwo - 1 : fakeTwo);
+      setFakePositionTwo({ 
+        left: `${random(15, 85)}%`, 
+        top: `${random(20, 80)}%`, 
+        border: `2px rgb(${random(0, 250)}, ${random(0, 250)}, ${random(0, 250)}) solid`
+      })
+
+    } else if (number >= 4) {
+      // set a fake number that isn't equal to the current number
+      const fake = random(1, 99);
+      setFakeNumberOne(fake === number ? fake - 1 : fake);
+      setFakePositionOne({ 
+        left: `${random(15, 85)}%`, 
+        top: `${random(20, 80)}%`, 
+        border: `2px rgb(${random(0, 250)}, ${random(0, 250)}, ${random(0, 250)}) solid`
+      })
     }
   }
 
   const reset = () => {
     setNumber(0);
     setPosition(prev => ({...prev, left: "50%", top: "50%", border: `2px gray solid`}));
-    setScore(0);
     setTime(10);
     setStart(false);
     setEnd(false);
@@ -103,6 +147,12 @@ const Number = () => {
       <p className="number-scores"><span>High score: {highScore}</span><span>Previous score: {prevScore}</span></p>
       <GameBoard />
       <div className={numberPiece} style={position} onClick={reposition}><strong>{number}</strong></div>
+      {number >= 5 && 
+      <div className={numberPiece} style={fakePositionOne}><strong>{fakeNumberOne}</strong></div>
+      }
+      {number >= 10 && 
+      <div className={numberPiece} style={fakePositionTwo}><strong>{fakeNumberTwo}</strong></div>
+      }
     </div>
   )
 }
