@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 91vh;
+  height: 88vh;
   margin-top: -25px;
 }
 
@@ -28,6 +28,7 @@
   border: none;
   padding: 0;
   position: absolute;
+  color: rgb(87, 87, 87);
  
   &:focus, &:hover, &:visited, &:link, &:active {
     background: transparent;
@@ -51,4 +52,8 @@
   font-weight: bold;
   cursor: pointer;
   font-size: 1em;
+}
+
+.high-score {
+  margin-top: -8px;
 }
