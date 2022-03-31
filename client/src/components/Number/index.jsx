@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import GameBoard from "../GameBoard";
+import "./index.scss";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Number = () => {
-  const [position, setPosition] = useState({left: "50%", top: "50%", "background-color": "black"});
+  const [number, setNumber] = useState(0);
+  const [position, setPosition] = useState({left: "50%", top: "50%", border: `2px gray solid`});
   const [score, setScore] = useState(0);
   const [time, setTime] = useState(10);
   const [start, setStart] = useState(false);
@@ -18,11 +20,13 @@ const Number = () => {
   }
 
   const reposition = () => {
+    setNumber(prev => prev + 1);
+
     setPosition(prev => ({
       ...prev, 
       left: `${random(15, 85)}%`, 
       top: `${random(20, 80)}%`, 
-      "background-color": `rgb(${random(0, 250)}, ${random(0, 250)}, ${random(0, 250)}`
+      border: `2px rgb(${random(0, 250)}, ${random(0, 250)}, ${random(0, 250)}) solid`
     }));
 
     setScore(prev => prev + 1);
@@ -33,7 +37,8 @@ const Number = () => {
   }
 
   const reset = () => {
-    setPosition(prev => ({...prev, left: "50%", top: "50%", "background-color": "black"}));
+    setNumber(0);
+    setPosition(prev => ({...prev, left: "50%", top: "50%", border: `2px gray solid`}));
     setScore(0);
     setTime(10);
     setStart(false);
@@ -83,22 +88,21 @@ const Number = () => {
   //     .catch(err => console.log(err.message));
   // }, [])
 
-  const classicPiece = classNames("classic-piece", { "end": end });
+  const numberPiece = classNames("number-piece", { "end": end });
   
   return (
     <div>
       <div className="top">
         <Link to="/" className="link"><button className="back-button">← Back</button></Link>
-        <h3 className="classic-game-header">Number Tap Game</h3>
+        <h3 className="game-header">Number Tap Game</h3>
         <button onClick={reset} className="new-game">New Game</button>
       </div>
       <div className="time-score">
         <p>Time Remaining: {time}</p>
-        <p><strong>Score: {score}</strong></p>
       </div>
-      <p className="scores"><span>High score: {highScore}</span><span>Previous score: {prevScore}</span></p>
+      <p className="number-scores"><span>High score: {highScore}</span><span>Previous score: {prevScore}</span></p>
       <GameBoard />
-      <div className={classicPiece} style={position} onClick={reposition}></div>
+      <div className={numberPiece} style={position} onClick={reposition}><strong>{number}</strong></div>
     </div>
   )
 }
