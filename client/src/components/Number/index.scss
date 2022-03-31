@@ -1,0 +1,14 @@
+.number-piece {
+  width: 31px;
+  height: 31px;
+  border: 2px gray solid;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.number-scores {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: -30px;
+}
