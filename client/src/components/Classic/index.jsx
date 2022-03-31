@@ -3,6 +3,7 @@ import GameBoard from "../GameBoard";
 import "./index.scss";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Classic = () => {
   const [position, setPosition] = useState({left: "50%", top: "50%", "background-color": "black"});
@@ -10,6 +11,7 @@ const Classic = () => {
   const [time, setTime] = useState(10);
   const [start, setStart] = useState(false);
   const [end, setEnd] = useState(false);
+  const [highScore, setHighScore] = useState(0);
 
   const random = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -57,6 +59,16 @@ const Classic = () => {
     }
   }, [time]);
 
+  useEffect(() => {
+    axios.get("http://localhost:8080/classic_scores/1")
+      .then(res => {
+        console.log(res);
+        const userScores = res.data;
+        setHighScore(userScores[0].score);
+      })
+      .catch(err => console.log(err.message));
+  }, [])
+
   const classicPiece = classNames("classic-piece", { "end": end });
   
   return (
@@ -70,7 +82,7 @@ const Classic = () => {
         <p>Time Remaining: {time}</p>
         <p><strong>Score: {score}</strong></p>
       </div>
-      <p className="high-score">High score: 10</p>
+      <p className="high-score">High score: {highScore}</p>
       <GameBoard />
       <div className={classicPiece} style={position} onClick={reposition}></div>
     </div>
