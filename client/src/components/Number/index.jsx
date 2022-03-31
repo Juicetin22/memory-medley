@@ -12,7 +12,7 @@ const Number = () => {
   const [fakePositionOne, setFakePositionOne] = useState({left: "50%", top: "50%", border: `2px gray solid`});
   const [fakeNumberTwo, setFakeNumberTwo] = useState(0);
   const [fakePositionTwo, setFakePositionTwo] = useState({left: "50%", top: "50%", border: `2px gray solid`});
-  const [time, setTime] = useState(30);
+  const [time, setTime] = useState(5);
   const [start, setStart] = useState(false);
   const [end, setEnd] = useState(false);
   const [highScore, setHighScore] = useState(0);
@@ -106,31 +106,31 @@ const Number = () => {
     if (time === 0) {
       setEnd(true);
 
-      // axios.post("http://localhost:8080/classic_scores", { score, user_id: 1 })
-      //   .then((res) => {
-      //     setPrevScore(res.data.score);
+      axios.post("http://localhost:8080/number_scores", { score: number, user_id: 1 })
+        .then((res) => {
+          setPrevScore(res.data.score);
 
-      //     if (res.data.score > highScore) {
-      //       setHighScore(res.data.score);
-      //     }
-      //   })
-      //   .catch(err => console.log(err.message));
+          if (res.data.score > highScore) {
+            setHighScore(res.data.score);
+          }
+        })
+        .catch(err => console.log(err.message));
     }
   }, [time]);
 
-  // useEffect(() => {
-  //   axios.get("http://localhost:8080/number_scores/1/high")
-  //     .then(res => {
-  //       setHighScore(res.data.score);
-  //     })
-  //     .catch(err => console.log(err.message));
+  useEffect(() => {
+    axios.get("http://localhost:8080/number_scores/1/high")
+      .then(res => {
+        setHighScore(res.data.score);
+      })
+      .catch(err => console.log(err.message));
 
-  //   axios.get("http://localhost:8080/number_scores/1/prev")
-  //     .then(res => {
-  //       setPrevScore(res.data.score);
-  //     })
-  //     .catch(err => console.log(err.message));
-  // }, [])
+    axios.get("http://localhost:8080/number_scores/1/prev")
+      .then(res => {
+        setPrevScore(res.data.score);
+      })
+      .catch(err => console.log(err.message));
+  }, [])
 
   const numberPiece = classNames("number-piece", { "end": end });
   
