@@ -70,6 +70,7 @@ const Classic = () => {
         <p>Time Remaining: {time}</p>
         <p><strong>Score: {score}</strong></p>
       </div>
+      <p className="high-score">High score: 10</p>
       <GameBoard />
       <div className={classicPiece} style={position} onClick={reposition}></div>
     </div>
