@@ -7,9 +7,9 @@ INSERT INTO users (username, email, password) VALUES ('dile', 'crocogator@cat.co
 
 
 -- sample scores for classic game
-INSERT INTO classic_scores (score, user_id) VALUES (10, 1);
-INSERT INTO classic_scores (score, user_id) VALUES (69, 1);
-INSERT INTO classic_scores (score, user_id) VALUES (98, 1);
+INSERT INTO classic_scores (score, user_id) VALUES (2, 1);
+INSERT INTO classic_scores (score, user_id) VALUES (8, 1);
+INSERT INTO classic_scores (score, user_id) VALUES (4, 1);
 INSERT INTO classic_scores (score, user_id) VALUES (22, 2);
 INSERT INTO classic_scores (score, user_id) VALUES (33, 3);
 INSERT INTO classic_scores (score, user_id) VALUES (44, 4);

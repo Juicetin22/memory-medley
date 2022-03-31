@@ -1,0 +1,10 @@
+.board {
+  position: absolute;
+  width: 80%;
+  height: 75%;
+  background-color: white;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: gray 2px solid;
+}
