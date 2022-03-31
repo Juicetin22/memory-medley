@@ -23,7 +23,7 @@ const Classic = () => {
       ...prev, 
       left: `${random(15, 85)}%`, 
       top: `${random(20, 80)}%`, 
-      "background-color": `rgb(${random(0, 250)}, ${random(0, 250)}, ${random(0, 250)}`
+      "background-color": `rgb(${random(0, 250)}, ${random(0, 250)}, ${random(0, 250)})`
     }));
 
     setScore(prev => prev + 1);
@@ -90,7 +90,7 @@ const Classic = () => {
     <div>
       <div className="top">
         <Link to="/" className="link"><button className="back-button">← Back</button></Link>
-        <h3 className="classic-game-header">Classic Tap Game</h3>
+        <h3 className="game-header">Classic Tap Game</h3>
         <button onClick={reset} className="new-game">New Game</button>
       </div>
       <div className="time-score">
