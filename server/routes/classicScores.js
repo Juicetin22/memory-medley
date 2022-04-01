@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 module.exports = (db) => {
-  // get all scores
+  // get all classic scores
   router.get("/", (req, res) => {
     const command = `
       SELECT * 
@@ -63,7 +63,7 @@ module.exports = (db) => {
         console.log(data.rows[0]);
         res.json(data.rows[0]);
       })
-  })
+  });
 
   return router;
 }
