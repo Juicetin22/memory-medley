@@ -17,6 +17,7 @@ const Number = () => {
   const [end, setEnd] = useState(false);
   const [highScore, setHighScore] = useState(0);
   const [prevScore, setPrevScore] = useState(0);
+  const [allTime, setAllTime] = useState(0);
 
   const random = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -119,17 +120,36 @@ const Number = () => {
   }, [time]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/number_scores/1/high")
-      .then(res => {
-        setHighScore(res.data.score);
-      })
-      .catch(err => console.log(err.message));
+    // axios.get("http://localhost:8080/number_scores/1/high")
+    //   .then(res => {
+    //     setHighScore(res.data.score);
+    //   })
+    //   .catch(err => console.log(err.message));
 
-    axios.get("http://localhost:8080/number_scores/1/prev")
-      .then(res => {
-        setPrevScore(res.data.score);
-      })
-      .catch(err => console.log(err.message));
+    // axios.get("http://localhost:8080/number_scores/1/prev")
+    //   .then(res => {
+    //     setPrevScore(res.data.score);
+    //   })
+    //   .catch(err => console.log(err.message));
+
+    // axios.get("http://localhost:8080/number_scores/all_time")
+    //   .then(res => {
+    //     setAllTime(res.data.score);
+    //   })
+    //   .catch(err => console.log(err.message));
+
+    Promise.all([
+      axios.get("http://localhost:8080/number_scores/1/high"),
+      axios.get("http://localhost:8080/number_scores/1/prev"),
+      axios.get("http://localhost:8080/number_scores/all_time")
+    ]).then((res) => {
+      console.log(res);
+      // ternary condition to take into consideration no high/previous scores for user
+      setHighScore(res[0].data ? res[0].data.score : 0);
+      setPrevScore(res[1].data ? res[1].data.score : 0);
+      setAllTime(res[2].data.score);
+    }).catch(err => console.log(err.message));
+
   }, [])
 
   const numberPiece = classNames("number-piece", { "end": end });
@@ -143,8 +163,9 @@ const Number = () => {
       </div>
       <div className="time-score">
         <p>Time Remaining: {time}</p>
+        <p className="number-scores"><span>Your high score: {highScore}</span><span>Previous score: {prevScore}</span></p>
       </div>
-      <p className="number-scores"><span>High score: {highScore}</span><span>Previous score: {prevScore}</span></p>
+      <p className="all-time">All-time high score: {allTime}</p>
       <GameBoard />
       <div className={numberPiece} style={position} onClick={reposition}><strong>{number}</strong></div>
       {number >= 5 && 
