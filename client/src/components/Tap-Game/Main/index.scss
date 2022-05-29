@@ -1,0 +1,30 @@
+.opening-words {
+  margin-top: 20px;
+}
+
+.game-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 100px;
+}
+
+.classic-button {
+  &:hover {
+    background-color: orange;
+  }
+}
+
+.number-button {
+  &:hover {
+    background-color: rgb(46, 173, 46);
+  }
+}
+
+.how-to-play {
+  margin-top: 50px;
+  font-weight: bold;
+}
+
+.how-to-play-modal {
+  text-align: left;
+}

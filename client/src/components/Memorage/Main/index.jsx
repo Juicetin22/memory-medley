@@ -1,11 +1,11 @@
 import React from "react";
 
-const Homepage = () => {
+const Memorage = () => {
   return (
     <div>
-      hi
+      HIIII
     </div>
   )
 }
 
-export default Homepage;
+export default Memorage;

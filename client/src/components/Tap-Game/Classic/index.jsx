@@ -8,7 +8,7 @@ import axios from "axios";
 const Classic = () => {
   const [position, setPosition] = useState({left: "50%", top: "50%", "background-color": "black"});
   const [score, setScore] = useState(0);
-  const [time, setTime] = useState(10);
+  const [time, setTime] = useState(100);
   const [start, setStart] = useState(false);
   const [end, setEnd] = useState(false);
   const [highScore, setHighScore] = useState(0);
@@ -23,7 +23,7 @@ const Classic = () => {
       ...prev, 
       left: `${random(15, 85)}%`, 
       top: `${random(20, 80)}%`, 
-      "background-color": `rgb(${random(0, 250)}, ${random(0, 250)}, ${random(0, 250)}`
+      "background-color": `rgb(${random(0, 250)}, ${random(0, 250)}, ${random(0, 250)})`
     }));
 
     setScore(prev => prev + 1);
@@ -36,7 +36,7 @@ const Classic = () => {
   const reset = () => {
     setPosition(prev => ({...prev, left: "50%", top: "50%", "background-color": "black"}));
     setScore(0);
-    setTime(10);
+    setTime(100);
     setStart(false);
     setEnd(false);
   }
@@ -90,7 +90,7 @@ const Classic = () => {
     <div>
       <div className="top">
         <Link to="/" className="link"><button className="back-button">← Back</button></Link>
-        <h3 className="classic-game-header">Classic Tap Game</h3>
+        <h3 className="game-header">Classic Tap Game</h3>
         <button onClick={reset} className="new-game">New Game</button>
       </div>
       <div className="time-score">

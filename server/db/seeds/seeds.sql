@@ -19,10 +19,10 @@ INSERT INTO classic_scores (score, user_id) VALUES (91, 5);
 
 -- sample scores for number game
 INSERT INTO number_scores (score, user_id) VALUES (8, 1);
-INSERT INTO number_scores (score, user_id) VALUES (67, 1);
-INSERT INTO number_scores (score, user_id) VALUES (66, 1);
+INSERT INTO number_scores (score, user_id) VALUES (7, 1);
+INSERT INTO number_scores (score, user_id) VALUES (3, 1);
 INSERT INTO number_scores (score, user_id) VALUES (31, 2);
-INSERT INTO number_scores (score, user_id) VALUES (70, 3);
+INSERT INTO number_scores (score, user_id) VALUES (70, 2);
 INSERT INTO number_scores (score, user_id) VALUES (44, 4);
 INSERT INTO number_scores (score, user_id) VALUES (74, 4);
 INSERT INTO number_scores (score, user_id) VALUES (70, 5);
