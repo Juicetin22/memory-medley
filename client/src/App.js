@@ -5,6 +5,7 @@ import Homepage from "./components/Homepage";
 import TapGame from "./components/Tap-Game/Main";
 import Classic from "./components/Tap-Game/Classic";
 import Number from "./components/Tap-Game/Number";
+import Memorage from "./components/Memorage/Main";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path={"/tap-game/"} element={<TapGame />} />
         <Route path={"/tap-game/classic"} element={<Classic />} />
         <Route path={"/tap-game/number"} element={<Number />} />
+        <Route path={"/memorage"} element={<Memorage />} />
       </Routes>
     </div>
   );
