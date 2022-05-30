@@ -10,8 +10,18 @@ const Homepage = () => {
         <Card.Body>
           <h2 className="title">Welcome to Memory Medley!</h2>
           <p>Please choose one of the following game modes to begin ☺️</p>
-          <div>
-         
+          <div className="game-modes">
+            <Link to={"/memory-games"}>
+              <Button >Memory Games</Button>
+            </Link>
+            <div className="game-modes-bottom">
+              <Link to={"/tap-game"}>
+                <Button >Tap Game</Button>
+              </Link>
+              <Link to={"/memorage"}>
+                <Button >Memorage</Button>
+              </Link>
+            </div>
           </div>
         </Card.Body>
       </Card>
