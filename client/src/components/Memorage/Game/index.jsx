@@ -11,6 +11,9 @@ for (let i = 1; i <= 31; i++) {
 const MemorageGame = () => {
   
   const [currentImage, setCurrentImage] = useState(images[0].src);
+  const [log, setLog] = useState([]);
+  const [score, setScore] = useState(0);
+  const [lives, setLives] = useState(3);
 
   const random = () => {
     return Math.floor(Math.random() * (images[images.length - 1].id - images[0].id + 1)) + images[0].id;
@@ -26,13 +29,40 @@ const MemorageGame = () => {
     };
   }
 
+  const checkSeen = () => {
+    if (log.indexOf(currentImage) !== -1) {
+      setScore(prev => prev + 1);
+      next();
+    } else {
+      setLives(prev => prev - 1);
+      next();
+    }
+  }
+
+  const checkNew = () => {
+    if (log.indexOf(currentImage) === -1) {
+      setLog(prev => [...prev, currentImage]);
+      setScore(prev => prev + 1);
+      next();
+    } else {
+      setLives(prev => prev - 1);
+      next();
+    }
+  }
+
   return (
     <>
       <div className="image-holder">
         <img src={currentImage} />
       </div>
       <br />
-      <Button onClick={next}>RANDOMIZE</Button>
+      <div className="memorage-buttons">
+        <Button onClick={checkSeen}>Seen</Button>
+        <Button onClick={checkNew}>New</Button>
+      </div>
+      <br />
+      <p>Score: {score}</p>
+      <p>Lives: {lives}</p>
     </>
   )
 }
