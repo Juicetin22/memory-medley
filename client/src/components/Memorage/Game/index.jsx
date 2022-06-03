@@ -35,6 +35,7 @@ const MemorageGame = () => {
       next();
     } else {
       setLives(prev => prev - 1);
+      setLog(prev => [...prev, currentImage]);
       next();
     }
   }
