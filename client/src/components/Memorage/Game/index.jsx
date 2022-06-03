@@ -25,6 +25,8 @@ const MemorageGame = () => {
       
   }
 
+  const status = classNames({ "shake": shake }, { "full": lives === 3}, { "moderate": lives === 2}, { "low": lives < 2 });
+
   // function to generate a random number between 1 and the number of images
   const random = () => {
     return Math.floor(Math.random() * (images[images.length - 1].id - images[0].id + 1)) + images[0].id;
@@ -77,7 +79,7 @@ const MemorageGame = () => {
       </div>
       <br />
       <p>Score: {score}</p>
-      <p className={shake ? "shake" : null}>Lives: {lives}</p>
+      <p className={status}>Lives: {lives}</p>
     </>
   )
 }
