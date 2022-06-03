@@ -23,6 +23,18 @@
   justify-content: space-evenly;
 }
 
+.full {
+  color: rgb(35, 178, 35);
+}
+
+.moderate {
+  color: orange;
+}
+
+.low {
+  color: red;
+}
+
 .shake {
   animation: shake 1s infinite;
 }
