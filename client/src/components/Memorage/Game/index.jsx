@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./index.scss";
 import { Button } from "react-bootstrap";
+import classNames from "classnames";
 
 const images = [];
 
@@ -29,6 +30,7 @@ const MemorageGame = () => {
     return Math.floor(Math.random() * (images[images.length - 1].id - images[0].id + 1)) + images[0].id;
   }
 
+  // generate next image
   const next = () => {
     const generate = random();
 
@@ -70,8 +72,8 @@ const MemorageGame = () => {
       </div>
       <br />
       <div className="memorage-buttons">
-        <Button onClick={checkSeen}>Seen</Button>
-        <Button onClick={checkNew}>New</Button>
+        <Button onClick={checkSeen} disabled={!lives}>Seen</Button>
+        <Button onClick={checkNew} disabled={!lives}>New</Button>
       </div>
       <br />
       <p>Score: {score}</p>
