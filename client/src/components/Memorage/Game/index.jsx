@@ -14,7 +14,17 @@ const MemorageGame = () => {
   const [log, setLog] = useState([]);
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(3);
+  const [shake, setShake] = useState(false);
+    
+  const animate = () => {
+    // set shake state to true when incorrect answer  
+    setShake(true);
+    // stop shaking after a period of time
+    setTimeout(() => setShake(false), 500);
+      
+  }
 
+  // function to generate a random number between 1 and the number of images
   const random = () => {
     return Math.floor(Math.random() * (images[images.length - 1].id - images[0].id + 1)) + images[0].id;
   }
@@ -36,6 +46,7 @@ const MemorageGame = () => {
     } else {
       setLives(prev => prev - 1);
       setLog(prev => [...prev, currentImage]);
+      animate();
       next();
     }
   }
@@ -47,6 +58,7 @@ const MemorageGame = () => {
       next();
     } else {
       setLives(prev => prev - 1);
+      animate();
       next();
     }
   }
@@ -63,7 +75,7 @@ const MemorageGame = () => {
       </div>
       <br />
       <p>Score: {score}</p>
-      <p>Lives: {lives}</p>
+      <p className={shake ? "shake" : null}>Lives: {lives}</p>
     </>
   )
 }
