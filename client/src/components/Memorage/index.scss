@@ -4,4 +4,11 @@
 
 .memorage-start-button {
   margin-top: 50px;
+  background-color: rgb(255, 244, 255);
+  border-color: rgb(226, 171, 226);
+  color: black;
+
+  &:hover {
+    background-color: rgb(237, 120, 120);
+  }
 }
