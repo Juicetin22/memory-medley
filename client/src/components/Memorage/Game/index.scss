@@ -1,3 +1,14 @@
+.memorage-back {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: rgb(87, 87, 87);
+
+  &:focus, &:hover, &:visited, &:link, &:active {
+    color: rgb(197, 197, 197);
+  }
+}
+
 .image-holder {
   border: 2px solid white;
   width: 333px;
