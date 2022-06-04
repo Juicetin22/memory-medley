@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./index.scss";
 import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import classNames from "classnames";
 
 const images = [];
@@ -87,6 +88,11 @@ const MemorageGame = () => {
 
   return (
     <>
+      <div>
+        <Link to={"/memorage"}>
+          <button className="memorage-back">← Back</button>
+        </Link>
+      </div>
       <div className="image-holder">
         <img src={currentImage} />
       </div>
