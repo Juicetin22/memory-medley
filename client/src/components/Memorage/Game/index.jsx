@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
 import { Button } from "react-bootstrap";
 import classNames from "classnames";
@@ -11,17 +11,28 @@ for (let i = 1; i <= 31; i++) {
 
 const MemorageGame = () => {
   
-  const [currentImage, setCurrentImage] = useState(images[0].src);
+  const [currentImage, setCurrentImage] = useState("");
   const [log, setLog] = useState([]);
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(3);
+  
   const [shake, setShake] = useState(false);
-    
-  const animate = () => {
+
+  const incorrect = () => {
     // set shake state to true when incorrect answer  
     setShake(true);
     // stop shaking after a period of time
     setTimeout(() => setShake(false), 500);
+      
+  }
+
+  const [bounce, setBounce] = useState(false);
+
+  const correct = () => {
+    // set bounce state to true when correct answer  
+    setBounce(true);
+    // stop bouncing after a period of time
+    setTimeout(() => setBounce(false), 600);
       
   }
 
@@ -46,11 +57,12 @@ const MemorageGame = () => {
   const checkSeen = () => {
     if (log.indexOf(currentImage) !== -1) {
       setScore(prev => prev + 1);
+      correct();
       next();
     } else {
       setLives(prev => prev - 1);
       setLog(prev => [...prev, currentImage]);
-      animate();
+      incorrect();
       next();
     }
   }
@@ -59,13 +71,19 @@ const MemorageGame = () => {
     if (log.indexOf(currentImage) === -1) {
       setLog(prev => [...prev, currentImage]);
       setScore(prev => prev + 1);
+      correct();
       next();
     } else {
       setLives(prev => prev - 1);
-      animate();
+      incorrect();
       next();
     }
   }
+
+  // generate one of the images in list randomly at the start of the game
+  useEffect(() => {
+    next();
+  }, [])
 
   return (
     <>
@@ -78,7 +96,7 @@ const MemorageGame = () => {
         <Button onClick={checkNew} disabled={!lives}>New</Button>
       </div>
       <br />
-      <p>Score: {score}</p>
+      <p className={bounce ? "bounce" : null}>Score: {score}</p>
       <p className={status}>Lives: {lives}</p>
     </>
   )
