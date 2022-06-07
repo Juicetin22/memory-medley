@@ -1,11 +1,39 @@
+.memorage-header {
+  margin-top: 10px;
+}
+
+.memorage-top-buttons {
+  display: flex;
+  width: 333px;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .memorage-back {
   background: transparent;
   border: none;
   padding: 0;
   color: rgb(87, 87, 87);
+  margin-top: 15px;
 
   &:focus, &:hover, &:visited, &:link, &:active {
     color: rgb(197, 197, 197);
+  }
+}
+
+.memorage-new-game {
+  background-color: transparent;
+  border: none;
+  margin-top: 15px;
+  padding: 0;
+  color: rgb(87, 87, 87);
+
+  &:focus, &:hover, &:visited, &:link, &:active {
+    background-color: transparent;
+    border: none;
+    color: rgb(227, 157, 168);
+    text-decoration: underline;
   }
 }
 
@@ -13,7 +41,7 @@
   border: 2px solid white;
   width: 333px;
   height: 333px;
-  margin-top: 40px;
+  margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
 }
