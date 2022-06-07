@@ -118,3 +118,14 @@
     transform: translateY(-4px);
   }
 }
+
+.seen-button {
+  background-color: rgb(178, 89, 178);
+  border-color: rgb(178, 89, 178);
+
+  &:hover, &:focus, &:disabled {
+    background-color: rgb(155, 70, 155);
+    border-color: rgb(155, 70, 155);
+  }
+}
+
