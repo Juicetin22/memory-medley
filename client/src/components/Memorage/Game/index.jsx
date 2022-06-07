@@ -16,6 +16,7 @@ const MemorageGame = () => {
   const [log, setLog] = useState([]);
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(3);
+  const [loading, setLoading] = useState(false);
   
   const [shake, setShake] = useState(false);
 
@@ -35,6 +36,13 @@ const MemorageGame = () => {
     // stop bouncing after a period of time
     setTimeout(() => setBounce(false), 600);
       
+  }
+
+  const blank = () => {
+    // set blank state to true when correct answer  
+    setLoading(true);
+    // remove blank state after a short period of time
+    setTimeout(() => setLoading(false), 150);
   }
 
   const status = classNames({ "shake": shake }, { "full": lives === 3}, { "moderate": lives === 2}, { "low": lives < 2 });
@@ -58,11 +66,13 @@ const MemorageGame = () => {
   const checkSeen = () => {
     if (log.indexOf(currentImage) !== -1) {
       setScore(prev => prev + 1);
+      blank();
       correct();
       next();
     } else {
       setLives(prev => prev - 1);
       setLog(prev => [...prev, currentImage]);
+      blank();
       incorrect();
       next();
     }
@@ -72,13 +82,25 @@ const MemorageGame = () => {
     if (log.indexOf(currentImage) === -1) {
       setLog(prev => [...prev, currentImage]);
       setScore(prev => prev + 1);
+      blank();
       correct();
       next();
     } else {
       setLives(prev => prev - 1);
+      blank();
       incorrect();
       next();
     }
+  }
+
+  const reset = () => {
+    setLog([]);
+    setScore(0);
+    setLives(3);
+    setLoading(false);
+    setShake(false);
+    setBounce(false);
+    next();
   }
 
   // generate one of the images in list randomly at the start of the game
@@ -92,12 +114,14 @@ const MemorageGame = () => {
         <Link to={"/memorage"}>
           <button className="memorage-back">← Back</button>
         </Link>
-        <Button className="memorage-new-game">New Game</Button>
+        <Button onClick={reset} className="memorage-new-game">New Game</Button>
       </div>
       <h3 className="memorage-header">Memorage</h3>
+      { !loading ? 
       <div className="image-holder">
         <img src={currentImage} />
-      </div>
+      </div> : null }
+      { loading ? <div className="white-screen"></div> : null }
       <br />
       <div className="memorage-buttons">
         <Button onClick={checkSeen} disabled={!lives}>Seen</Button>
