@@ -18,10 +18,10 @@ const TapGame = () => {
       <p>Tap on either button below to start playing!</p>
       
       <div className="game-buttons">
-        <Link to={"/classic"}>
+        <Link to={"/tap-game/classic"}>
           <Button className="classic-button">Classic Tap Game</Button>
         </Link>
-        <Link to={"/number"}>
+        <Link to={"/tap-game/number"}>
           <Button variant="danger" className="number-button">Number Tap Game</Button>
         </Link>
       </div>

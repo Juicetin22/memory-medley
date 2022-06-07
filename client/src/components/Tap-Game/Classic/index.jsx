@@ -89,7 +89,7 @@ const Classic = () => {
   return (
     <div>
       <div className="top">
-        <Link to="/" className="link"><button className="back-button">← Back</button></Link>
+        <Link to="/tap-game" className="link"><button className="back-button">← Back</button></Link>
         <h3 className="game-header">Classic Tap Game</h3>
         <button onClick={reset} className="new-game">New Game</button>
       </div>
