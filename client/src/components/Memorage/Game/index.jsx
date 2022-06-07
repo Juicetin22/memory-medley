@@ -6,7 +6,7 @@ import classNames from "classnames";
 
 const images = [];
 
-for (let i = 1; i <= 31; i++) {
+for (let i = 1; i <= 50; i++) {
   images.push({id: i, src: `/images/image-${i}.png`});
 }
 
@@ -124,8 +124,8 @@ const MemorageGame = () => {
       { loading ? <div className="white-screen"></div> : null }
       <br />
       <div className="memorage-buttons">
-        <Button onClick={checkSeen} disabled={!lives}>Seen</Button>
-        <Button onClick={checkNew} disabled={!lives}>New</Button>
+        <Button onClick={checkSeen} className="seen-button" disabled={!lives}>Seen</Button>
+        <Button onClick={checkNew} className="new-button" disabled={!lives}>New</Button>
       </div>
       <br />
       <p className={bounce ? "bounce" : null}>Score: {score}</p>
