@@ -88,11 +88,13 @@ const MemorageGame = () => {
 
   return (
     <>
-      <div>
+      <div className="memorage-top-buttons">
         <Link to={"/memorage"}>
           <button className="memorage-back">← Back</button>
         </Link>
+        <Button className="memorage-new-game">New Game</Button>
       </div>
+      <h3 className="memorage-header">Memorage</h3>
       <div className="image-holder">
         <img src={currentImage} />
       </div>
