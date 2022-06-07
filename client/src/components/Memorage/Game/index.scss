@@ -54,6 +54,16 @@
   border-radius: 6px;
 }
 
+.white-screen {
+  background-color: white;
+  width: 333px;
+  height: 333px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 9;
+}
+
 .memorage-buttons {
   margin-left: auto;
   margin-right: auto;
