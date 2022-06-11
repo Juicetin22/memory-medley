@@ -1,0 +1,65 @@
+.new-game {
+  background: rgb(238, 238, 238);
+  border: 2px solid rgb(64, 200, 224);
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: rgb(50, 133, 182);
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1em;
+
+  &:hover {
+    background: #5acfa8;
+    color: rgb(255, 255, 255);
+    border: 2px solid rgb(177, 177, 177);
+  }
+}
+
+.matching-card-grid {
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 30px;
+  max-width: 1000px;
+}
+
+.win {
+  background: transparent;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.win-header {
+  height: 0.5em;
+}
+
+.game-help-button {
+  padding: 0px 10px;
+  color: gray;
+  margin-left: 10px;
+}
+
+.rules {
+  text-align: left;
+}
+
+.matching-title {
+  margin-left: 80px;
+}
+
+/*media query to adapt styles to better support view for smaller screens like phones*/
+@media screen and (min-width: 478px) and (max-width: 750px) {
+  .matching-card-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 477px) {
+  .matching-card-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+  }
+}
