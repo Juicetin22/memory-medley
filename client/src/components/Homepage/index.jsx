@@ -9,6 +9,7 @@ const Homepage = () => {
       <Card className="home-card">
         <Card.Body>
           <h2 className="title">Welcome to Memory Medley!</h2>
+          <p>Thanks for stopping by!</p>
           <p>Please choose one of the following game modes to begin ☺️</p>
           <div className="game-modes">
             <Link to={"/memory-games"}>
@@ -16,15 +17,16 @@ const Homepage = () => {
             </Link>
             <div className="game-modes-bottom">
               <Link to={"/tap-game"}>
-                <Button >Tap Game</Button>
+                <Button variant="danger">Tap Game</Button>
               </Link>
               <Link to={"/memorage"}>
-                <Button >Memorage</Button>
+                <Button variant="secondary">Memorage</Button>
               </Link>
             </div>
           </div>
         </Card.Body>
       </Card>
+      <p>All images in this app were drawn by <a href="https://www.instagram.com/juicetinsketchs/">@juicetinsketchs</a></p>
     </>
   )
 }
