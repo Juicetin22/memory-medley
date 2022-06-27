@@ -1,33 +1,34 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./index.scss"
 import Card from "./Card";
-import { Button, Modal, Overlay, Tooltip } from "react-bootstrap";
+import { Button, Overlay, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Confetti from "react-confetti";
 
-const cardImages = [
-  { "src": "/images/image-4.png", matched: false },
-  { "src": "/images/image-13.png", matched: false },
-  { "src": "/images/image-19.png", matched: false },
-  { "src": "/images/image-32.png", matched: false },
-  { "src": "/images/image-35.png", matched: false },
-  { "src": "/images/image-46.png", matched: false },
-  { "src": "/images/image-29.png", matched: false },
-  { "src": "/images/image-22.png", matched: false },
-  { "src": "/images/image-27.png", matched: false }
-];
+// const cardImages = [
+//   { "src": "/images/image-4.png", matched: false },
+//   { "src": "/images/image-13.png", matched: false },
+//   { "src": "/images/image-19.png", matched: false },
+//   { "src": "/images/image-32.png", matched: false },
+//   { "src": "/images/image-35.png", matched: false },
+//   { "src": "/images/image-46.png", matched: false },
+//   { "src": "/images/image-29.png", matched: false },
+//   { "src": "/images/image-22.png", matched: false },
+//   { "src": "/images/image-27.png", matched: false }
+// ];
 
 // previous images 
-// const cardImages = [
-//   { "src": "https://img.icons8.com/cotton/512/000000/cat--v4.png", matched: false },
-//   { "src": "https://img.icons8.com/cotton/512/000000/dog--v2.png", matched: false },
-//   { "src": "https://img.icons8.com/pastel-glyph/512/000000/pigeon.png", matched: false },
-//   { "src": "https://img.icons8.com/cotton/512/000000/pigeon--v1.png", matched: false },
-//   { "src": "https://img.icons8.com/cotton/512/000000/pigeon--v2.png", matched: false },
-//   { "src": "https://img.icons8.com/cotton/512/000000/pigeon--v3.png", matched: false },
-//   { "src": "https://img.icons8.com/cotton/512/000000/owl--v2.png", matched: false },
-//   { "src": "https://img.icons8.com/cotton/512/000000/cow-breed.png", matched: false },
-//   { "src": "https://img.icons8.com/external-flatart-icons-outline-flatarticons/512/000000/external-duck-spring-flatart-icons-outline-flatarticons.png", matched: false }
-// ];
+const cardImages = [
+  { "src": "https://img.icons8.com/cotton/512/000000/cat--v4.png", matched: false },
+  { "src": "https://img.icons8.com/cotton/512/000000/dog--v2.png", matched: false },
+  { "src": "https://img.icons8.com/pastel-glyph/512/000000/pigeon.png", matched: false },
+  { "src": "https://img.icons8.com/cotton/512/000000/pigeon--v1.png", matched: false },
+  { "src": "https://img.icons8.com/cotton/512/000000/pigeon--v2.png", matched: false },
+  { "src": "https://img.icons8.com/cotton/512/000000/pigeon--v3.png", matched: false },
+  { "src": "https://img.icons8.com/cotton/512/000000/owl--v2.png", matched: false },
+  { "src": "https://img.icons8.com/cotton/512/000000/cow-breed.png", matched: false },
+  { "src": "https://img.icons8.com/external-flatart-icons-outline-flatarticons/512/000000/external-duck-spring-flatart-icons-outline-flatarticons.png", matched: false }
+];
 
 const Matching = () => {
   const [cards, setCards] = useState([]);
@@ -35,10 +36,7 @@ const Matching = () => {
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
-  const [show, setShow] = useState(false);
-
-  const handleShow = () => setShow(true);
-  const handleClose = () => setShow(false);
+  const [end, setEnd] = useState(false);
 
   const [helpShow, setHelpShow] = useState(false);
   const target = useRef(null);
@@ -55,6 +53,7 @@ const Matching = () => {
     
     setCards(shuffledCards);
     setTurns(0);
+    setEnd(false);
   };
 
   // handle a choice
@@ -71,7 +70,6 @@ const Matching = () => {
     setChoiceTwo(null);
     setTurns(prev => prev + 1);
     setDisabled(false);
-    setShow(false);
   };
 
   // compare two selected cards
@@ -111,7 +109,8 @@ const Matching = () => {
         return null;
       }
     }
-    turns ? handleShow() : handleClose();
+    
+    turns ? setEnd(true) : setEnd(false);
 
   }, [cards]);
 
@@ -135,7 +134,7 @@ const Matching = () => {
         <h4 className="matching-title">Matching Memory Game</h4>
         <div>
           <button onClick={shuffleCards} className="new-game">New Game</button>
-          <Button variant="outline-info" ref={target} onClick={() => setHelpShow(!show)} className="game-help-button" >
+          <Button variant="outline-info" ref={target} onClick={() => setHelpShow(false)} className="game-help-button" >
             ?
           </Button>
           <Overlay target={target.current} show={helpShow} placement="left-start">
@@ -155,6 +154,8 @@ const Matching = () => {
         {displayCards}
       </div>
       <p>Turns: {turns}</p>
+
+      { end ? <Confetti /> : null }
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import GameButton from "./GameButton";
 import "./index.scss";
 
@@ -52,6 +53,12 @@ const MemoryGames = () => {
           <p>Note: There's a way to get bonus points. Try to find it!</p>
         </Modal.Body>
       </Modal>
+
+      <div className="back-container">
+        <Link to="/" className="link">
+          <button className="back-to-main">← Back to Main Menu</button>
+        </Link>
+      </div>
     </>
   )
 }

@@ -21,7 +21,14 @@ const Card = (props) => {
           src="https://img.icons8.com/ios/250/000000/star--v1.png" 
           alt='card back' 
           onClick={handleClick} 
-        />
+          />
+        {/* <div className="back" onClick={handleClick}></div> */}
+        {/* <img 
+          className='back' 
+          src="/images/matching-back.png" 
+          alt='card back' 
+          onClick={handleClick} 
+        /> */}
       </div>
     </div>
   )
