@@ -36,6 +36,12 @@ const TapGame = () => {
           <p>Starting from the number 1, tap the correct number to earn a point. But be careful, as the game goes on, there will be other numbers to confuse you! Try to earn as many points as you can within the time limit!</p>
         </Modal.Body>
       </Modal>
+
+      <div className="back-container">
+        <Link to="/" className="link">
+          <button className="back-to-main">← Back to Main Menu</button>
+        </Link>
+      </div>
     </>
   )
 }
