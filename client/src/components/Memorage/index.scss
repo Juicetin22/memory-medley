@@ -12,3 +12,18 @@
     background-color: rgb(237, 120, 120);
   }
 }
+
+.back-to-main {
+  background: transparent;
+  border: none;
+  color: rgb(87, 87, 87);
+ 
+  &:focus, &:hover, &:visited, &:link, &:active {
+    background: transparent;
+    color: rgb(197, 197, 197);
+  }
+}
+
+.back-container {
+  margin-top: 30px;
+}
