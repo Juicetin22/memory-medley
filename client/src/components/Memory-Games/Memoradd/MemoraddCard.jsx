@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './MemoraddCard.scss';
 import ReactCardFlip from "react-card-flip";
 
-const NumberCard = (props) => {
+const MemoraddCard = (props) => {
   // props passed down from index
   const { card, value, reveal, lives, end, transition, setValue, setTurn, setReveal, setTransition } = props;
 
@@ -78,4 +78,4 @@ const NumberCard = (props) => {
   )
 }
 
-export default NumberCard;
+export default MemoraddCard;

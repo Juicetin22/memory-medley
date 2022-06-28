@@ -3,6 +3,7 @@ import GameBoard from "../GameBoard";
 import "./index.scss";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
+// import Confetti from "react-confetti";
 import axios from "axios";
 
 const Number = () => {
@@ -12,9 +13,10 @@ const Number = () => {
   const [fakePositionOne, setFakePositionOne] = useState({left: "50%", top: "50%", border: `2px gray solid`});
   const [fakeNumberTwo, setFakeNumberTwo] = useState(0);
   const [fakePositionTwo, setFakePositionTwo] = useState({left: "50%", top: "50%", border: `2px gray solid`});
-  const [time, setTime] = useState(100);
+  const [time, setTime] = useState(50);
   const [start, setStart] = useState(false);
   const [end, setEnd] = useState(false);
+  // const [confetti, setConfetti] = useState(false);
   const [highScore, setHighScore] = useState(0);
   const [prevScore, setPrevScore] = useState(0);
   const [allTime, setAllTime] = useState(0);
@@ -26,10 +28,36 @@ const Number = () => {
   const reposition = () => {
     setNumber(prev => prev + 1);
 
+    const numberLeft = random(15, 85);
+    const numberTop = random(20, 80);
+
+    let fakeOneLeft = random(15, 85);
+    let fakeOneTop = random(20, 80);
+
+    // while statements to prevent overlap of numbers on page
+    while (Math.abs(numberLeft - fakeOneLeft) < 3) {
+      fakeOneLeft = random(15, 85);
+    }
+
+    while (Math.abs(numberTop - fakeOneTop) < 5) {
+      fakeOneTop = random(20, 80);
+    }
+
+    let fakeTwoLeft = random(15, 85);
+    let fakeTwoTop = random(20, 80);
+
+    while (Math.abs(numberLeft - fakeTwoLeft) < 3 || Math.abs(fakeOneLeft - fakeTwoLeft) < 3) {
+      fakeTwoLeft = random(15, 85);
+    }
+
+    while (Math.abs(numberTop - fakeTwoTop) < 5 || Math.abs(fakeOneTop - fakeTwoTop) < 5) {
+      fakeTwoTop = random(20, 80);
+    }
+
     setPosition(prev => ({
       ...prev, 
-      left: `${random(15, 85)}%`, 
-      top: `${random(20, 80)}%`, 
+      left: `${numberLeft}%`, 
+      top: `${numberTop}%`, 
       border: `2px rgb(${random(0, 250)}, ${random(0, 250)}, ${random(0, 250)}) solid`
     }));
     
@@ -42,14 +70,14 @@ const Number = () => {
       // setting state is async so this if statement will occur before the new number is set, which is why we need to see the fake to the 'current' number or number + 2 (which is actually one less or one more respectively)
       setFakeNumberOne(number);
       setFakePositionOne({ 
-        left: `${random(15, 85)}%`, 
-        top: `${random(20, 80)}%`, 
+        left: `${fakeOneLeft}%`, 
+        top: `${fakeOneTop}%`, 
         border: `2px rgb(${random(0, 250)}, ${random(0, 250)}, ${random(0, 250)}) solid`
       })
       setFakeNumberTwo(number + 2);
       setFakePositionTwo({ 
-        left: `${random(15, 85)}%`, 
-        top: `${random(20, 80)}%`, 
+        left: `${fakeTwoLeft}%`, 
+        top: `${fakeTwoTop}%`, 
         border: `2px rgb(${random(0, 250)}, ${random(0, 250)}, ${random(0, 250)}) solid`
       })
 
@@ -59,14 +87,14 @@ const Number = () => {
       const fakeTwo = random(1, 99);
       setFakeNumberOne(fakeOne === number ? fakeOne - 1 : fakeOne);
       setFakePositionOne({ 
-        left: `${random(15, 85)}%`, 
-        top: `${random(20, 80)}%`, 
+        left: `${fakeOneLeft}%`, 
+        top: `${fakeOneTop}%`, 
         border: `2px rgb(${random(0, 250)}, ${random(0, 250)}, ${random(0, 250)}) solid`
       })
       setFakeNumberTwo(fakeTwo === number ? fakeTwo - 1 : fakeTwo);
       setFakePositionTwo({ 
-        left: `${random(15, 85)}%`, 
-        top: `${random(20, 80)}%`, 
+        left: `${fakeTwoLeft}%`, 
+        top: `${fakeTwoTop}%`, 
         border: `2px rgb(${random(0, 250)}, ${random(0, 250)}, ${random(0, 250)}) solid`
       })
 
@@ -75,8 +103,8 @@ const Number = () => {
       const fake = random(1, 99);
       setFakeNumberOne(fake === number ? fake - 1 : fake);
       setFakePositionOne({ 
-        left: `${random(15, 85)}%`, 
-        top: `${random(20, 80)}%`, 
+        left: `${fakeOneLeft}%`, 
+        top: `${fakeOneTop}%`, 
         border: `2px rgb(${random(0, 250)}, ${random(0, 250)}, ${random(0, 250)}) solid`
       })
     }
@@ -85,9 +113,10 @@ const Number = () => {
   const reset = () => {
     setNumber(0);
     setPosition(prev => ({...prev, left: "50%", top: "50%", border: `2px gray solid`}));
-    setTime(100);
+    setTime(50);
     setStart(false);
     setEnd(false);
+    // setConfetti(false);
   }
 
   useEffect(() => {
@@ -106,6 +135,7 @@ const Number = () => {
   useEffect(() => {
     if (time === 0) {
       setEnd(true);
+      // setConfetti(true);
 
       axios.post("http://localhost:8080/number_scores", { score: number, user_id: 1 })
         .then((res) => {
@@ -174,6 +204,7 @@ const Number = () => {
       {number >= 10 && 
       <div className={numberPiece} style={fakePositionTwo}><strong>{fakeNumberTwo}</strong></div>
       }
+      {/* { confetti ? <Confetti /> : null } */}
     </div>
   )
 }
