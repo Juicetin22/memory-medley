@@ -3,14 +3,16 @@ import GameBoard from "../GameBoard";
 import "./index.scss";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
+// import Confetti from "react-confetti";
 import axios from "axios";
 
 const Classic = () => {
   const [position, setPosition] = useState({left: "50%", top: "50%", "background-color": "black"});
   const [score, setScore] = useState(0);
-  const [time, setTime] = useState(100);
+  const [time, setTime] = useState(30);
   const [start, setStart] = useState(false);
   const [end, setEnd] = useState(false);
+  // const [confetti, setConfetti] = useState(false);
   const [highScore, setHighScore] = useState(0);
   const [prevScore, setPrevScore] = useState(0);
 
@@ -36,9 +38,10 @@ const Classic = () => {
   const reset = () => {
     setPosition(prev => ({...prev, left: "50%", top: "50%", "background-color": "black"}));
     setScore(0);
-    setTime(100);
+    setTime(30);
     setStart(false);
     setEnd(false);
+    // setConfetti(false);
   }
 
   useEffect(() => {
@@ -57,6 +60,7 @@ const Classic = () => {
   useEffect(() => {
     if (time === 0) {
       setEnd(true);
+      // setConfetti(true);
 
       axios.post("http://localhost:8080/classic_scores", { score, user_id: 1 })
         .then((res) => {
@@ -100,6 +104,7 @@ const Classic = () => {
       <p className="scores"><span>High score: {highScore}</span><span>Previous score: {prevScore}</span></p>
       <GameBoard />
       <div className={classicPiece} style={position} onClick={reposition}></div>
+      {/* { confetti ? <Confetti /> : null } */}
     </div>
   )
 }
