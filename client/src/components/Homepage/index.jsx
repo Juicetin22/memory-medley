@@ -26,7 +26,6 @@ const Homepage = () => {
           </div>
         </Card.Body>
       </Card>
-      <p>All images in this app were drawn by <a href="https://www.instagram.com/juicetinsketchs/">@juicetinsketchs</a></p>
     </>
   )
 }

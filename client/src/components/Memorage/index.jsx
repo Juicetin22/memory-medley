@@ -15,6 +15,14 @@ const Memorage = () => {
       <Link to={"/memorage/game-start"}>
         <Button className="memorage-start-button">Click to begin</Button>
       </Link>
+
+      <div className="back-container">
+        <Link to="/" className="link">
+          <button className="back-to-main">← Back to Main Menu</button>
+        </Link>
+      </div>
+
+      <p className="image-shoutout">All images in this game were drawn by <a href="https://www.instagram.com/juicetinsketchs/">@juicetinsketchs</a></p>
     </>
   )
 }
