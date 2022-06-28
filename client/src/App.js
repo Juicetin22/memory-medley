@@ -5,6 +5,7 @@ import Homepage from "./components/Homepage";
 import MemoryGames from "./components/Memory-Games";
 import Matching from "./components/Memory-Games/Matching";
 import NumbersMemory from "./components/Memory-Games/NumbersMemory";
+import Memoradd from "./components/Memory-Games/Memoradd";
 import TapGame from "./components/Tap-Game";
 import Classic from "./components/Tap-Game/Classic";
 import Number from "./components/Tap-Game/Number";
@@ -19,6 +20,7 @@ function App() {
         <Route path={"/memory-games"} element={<MemoryGames />} />
         <Route path={"/memory-games/matching-cards"} element={<Matching />} />
         <Route path={"/memory-games/numbers"} element={<NumbersMemory />} />
+        <Route path={"/memory-games/memoradd"} element={<Memoradd />} />
         <Route path={"/tap-game"} element={<TapGame />} />
         <Route path={"/tap-game/classic"} element={<Classic />} />
         <Route path={"/tap-game/number"} element={<Number />} />
