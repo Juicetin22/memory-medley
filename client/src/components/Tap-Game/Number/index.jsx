@@ -4,7 +4,7 @@ import "./index.scss";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 // import Confetti from "react-confetti";
-import axios from "axios";
+// import axios from "axios";
 
 const Number = () => {
   const [number, setNumber] = useState(0);
@@ -17,9 +17,9 @@ const Number = () => {
   const [start, setStart] = useState(false);
   const [end, setEnd] = useState(false);
   // const [confetti, setConfetti] = useState(false);
-  const [highScore, setHighScore] = useState(0);
-  const [prevScore, setPrevScore] = useState(0);
-  const [allTime, setAllTime] = useState(0);
+  // const [highScore, setHighScore] = useState(0);
+  // const [prevScore, setPrevScore] = useState(0);
+  // const [allTime, setAllTime] = useState(0);
 
   const random = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -137,15 +137,15 @@ const Number = () => {
       setEnd(true);
       // setConfetti(true);
 
-      axios.post("http://localhost:8080/number_scores", { score: number, user_id: 1 })
-        .then((res) => {
-          setPrevScore(res.data.score);
+      // axios.post("http://localhost:8080/number_scores", { score: number, user_id: 1 })
+      //   .then((res) => {
+      //     setPrevScore(res.data.score);
 
-          if (res.data.score > highScore) {
-            setHighScore(res.data.score);
-          }
-        })
-        .catch(err => console.log(err.message));
+      //     if (res.data.score > highScore) {
+      //       setHighScore(res.data.score);
+      //     }
+      //   })
+      //   .catch(err => console.log(err.message));
     }
   }, [time]);
 
@@ -168,17 +168,18 @@ const Number = () => {
     //   })
     //   .catch(err => console.log(err.message));
 
-    Promise.all([
-      axios.get("http://localhost:8080/number_scores/1/high"),
-      axios.get("http://localhost:8080/number_scores/1/prev"),
-      axios.get("http://localhost:8080/number_scores/all_time")
-    ]).then((res) => {
-      console.log(res);
-      // ternary condition to take into consideration no high/previous scores for user
-      setHighScore(res[0].data ? res[0].data.score : 0);
-      setPrevScore(res[1].data ? res[1].data.score : 0);
-      setAllTime(res[2].data.score);
-    }).catch(err => console.log(err.message));
+    // more concise!
+    // Promise.all([
+    //   axios.get("http://localhost:8080/number_scores/1/high"),
+    //   axios.get("http://localhost:8080/number_scores/1/prev"),
+    //   axios.get("http://localhost:8080/number_scores/all_time")
+    // ]).then((res) => {
+    //   console.log(res);
+    //   // ternary condition to take into consideration no high/previous scores for user
+    //   setHighScore(res[0].data ? res[0].data.score : 0);
+    //   setPrevScore(res[1].data ? res[1].data.score : 0);
+    //   setAllTime(res[2].data.score);
+    // }).catch(err => console.log(err.message));
 
   }, [])
 
@@ -193,9 +194,9 @@ const Number = () => {
       </div>
       <div className="time-score">
         <p>Time Remaining: {time}</p>
-        <p className="number-scores"><span>Your high score: {highScore}</span><span>Previous score: {prevScore}</span></p>
+        {/* <p className="number-scores"><span>Your high score: {highScore}</span><span>Previous score: {prevScore}</span></p> */}
       </div>
-      <p className="all-time">All-time high score: {allTime}</p>
+      {/* <p className="all-time">All-time high score: {allTime}</p> */}
       <GameBoard />
       <div className={numberPiece} style={position} onClick={reposition}><strong>{number}</strong></div>
       {number >= 5 && 

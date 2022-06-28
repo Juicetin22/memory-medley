@@ -4,7 +4,7 @@ import "./index.scss";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 // import Confetti from "react-confetti";
-import axios from "axios";
+// import axios from "axios";
 
 const Classic = () => {
   const [position, setPosition] = useState({left: "50%", top: "50%", "background-color": "black"});
@@ -13,8 +13,8 @@ const Classic = () => {
   const [start, setStart] = useState(false);
   const [end, setEnd] = useState(false);
   // const [confetti, setConfetti] = useState(false);
-  const [highScore, setHighScore] = useState(0);
-  const [prevScore, setPrevScore] = useState(0);
+  // const [highScore, setHighScore] = useState(0);
+  // const [prevScore, setPrevScore] = useState(0);
 
   const random = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -62,30 +62,30 @@ const Classic = () => {
       setEnd(true);
       // setConfetti(true);
 
-      axios.post("http://localhost:8080/classic_scores", { score, user_id: 1 })
-        .then((res) => {
-          setPrevScore(res.data.score);
+      // axios.post("http://localhost:8080/classic_scores", { score, user_id: 1 })
+      //   .then((res) => {
+      //     setPrevScore(res.data.score);
 
-          if (res.data.score > highScore) {
-            setHighScore(res.data.score);
-          }
-        })
-        .catch(err => console.log(err.message));
+      //     if (res.data.score > highScore) {
+      //       setHighScore(res.data.score);
+      //     }
+      //   })
+      //   .catch(err => console.log(err.message));
     }
   }, [time]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/classic_scores/1/high")
-      .then(res => {
-        setHighScore(res.data.score);
-      })
-      .catch(err => console.log(err.message));
+    // axios.get("http://localhost:8080/classic_scores/1/high")
+    //   .then(res => {
+    //     setHighScore(res.data.score);
+    //   })
+    //   .catch(err => console.log(err.message));
 
-    axios.get("http://localhost:8080/classic_scores/1/prev")
-      .then(res => {
-        setPrevScore(res.data.score);
-      })
-      .catch(err => console.log(err.message));
+    // axios.get("http://localhost:8080/classic_scores/1/prev")
+    //   .then(res => {
+    //     setPrevScore(res.data.score);
+    //   })
+    //   .catch(err => console.log(err.message));
   }, [])
 
   const classicPiece = classNames("classic-piece", { "end": end });
@@ -101,7 +101,7 @@ const Classic = () => {
         <p>Time Remaining: {time}</p>
         <p><strong>Score: {score}</strong></p>
       </div>
-      <p className="scores"><span>High score: {highScore}</span><span>Previous score: {prevScore}</span></p>
+      {/* <p className="scores"><span>High score: {highScore}</span><span>Previous score: {prevScore}</span></p> */}
       <GameBoard />
       <div className={classicPiece} style={position} onClick={reposition}></div>
       {/* { confetti ? <Confetti /> : null } */}
