@@ -134,7 +134,7 @@ const Matching = () => {
         <h4 className="matching-title">Matching Memory Game</h4>
         <div>
           <button onClick={shuffleCards} className="new-game">New Game</button>
-          <Button variant="outline-info" ref={target} onClick={() => setHelpShow(false)} className="game-help-button" >
+          <Button variant="outline-info" ref={target} onClick={() => setHelpShow(true)} className="game-help-button" >
             ?
           </Button>
           <Overlay target={target.current} show={helpShow} placement="left-start">

@@ -1,0 +1,80 @@
+.memoradd-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+  width: 66%;
+  padding-top: 10px;
+}
+
+.memoradd-body {
+  display: flex;
+  justify-content: space-around;
+}
+
+.memoradd-right-side {
+  width: 25%;
+}
+
+.memoradd-card {
+  height: fit-content;
+  margin-top: 35px;
+  margin-bottom: 20px;
+  background-color: rgb(240, 225, 240);
+  text-align: left;
+}
+
+.show-cards {
+  border: 2px solid rgb(194, 191, 196);
+  border-radius: 5px;
+  padding: 5px;
+  background-color: rgb(192, 192, 255);
+  color: rgb(117, 67, 67);
+
+  &:hover {
+    background-color: rgb(185, 157, 221);
+    color: white;
+  }
+}
+
+.o {
+  color: rgba(38, 224, 100, 0.884);
+}
+
+.healthy {
+  color: green;
+}
+
+.sufficient {
+  color: orange;
+}
+
+.danger {
+  color: red;
+}
+
+.mytooltip > .tooltip-inner {
+  width: 100%;
+}
+
+.memoradd-title {
+  margin-left: 60px;
+}
+
+/*media query to adapt styles to better support view for smaller screens like phones*/
+@media screen and (min-width: 674px) and (max-width: 970px) {
+  .memoradd-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 525px) and (max-width: 674px) {
+  .memoradd-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 525px) {
+  .memoradd-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
