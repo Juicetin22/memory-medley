@@ -1,0 +1,44 @@
+.number-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 15px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.number-result {
+  background: transparent;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.number-result-header {
+  height: 0.5em;
+}
+
+.top {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.number-title {
+  margin-left: 80px;
+}
+
+/*media query to adapt styles to better support view for smaller screens like phones*/
+@media screen and (min-width: 495px) and (max-width: 850px) {
+  .number-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 495px) {
+  .number-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+}
