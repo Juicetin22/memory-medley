@@ -59,6 +59,8 @@ const MemoryGames = () => {
           <button className="back-to-main">← Back to Main Menu</button>
         </Link>
       </div>
+
+      <footer className="icon-shoutout">Icons used in the games above can be found <a href="https://icons8.com/">here</a></footer>
     </>
   )
 }
